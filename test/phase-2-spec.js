@@ -39,10 +39,10 @@ describe('hiddenCounter()', function () {
 
 //3. myMap
 describe('myMap', function () {
- it("should function like the built in Array#map", function () {
+  it("should function like the built in Array#map", function () {
     //Arrange
     let testArray = [1, 2]
-    let testCb = function(num) {
+    let testCb = function (num) {
       return num * 2
     }
     let expected = [2, 4]
@@ -58,12 +58,15 @@ describe('myMap', function () {
 
   it("should not call the built in Array#map", function () {
     //Arrange
-    let testSpy = chai.spy.on(myMap, 'map')
-
+    let array = [1, 2, 3]
+    let cb = (el) => el * 2
+    let myMapSpy = chai.spi.on(array, 'map');
+    // let myMapSpy = chai.spy.on(Array.prototype, 'map');
     //Act
+    myMap(array, cb);
 
     //Assert
-    expect(testSpy).to.have.not.been.called.once
+    expect(myMapSpy).to.have.not.been.called();
 
   });
 })
